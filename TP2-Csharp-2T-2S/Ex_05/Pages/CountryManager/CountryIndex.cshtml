@@ -1,0 +1,26 @@
+@page
+@model Ex_05.Pages.CountryManager.CountryIndex
+
+@{
+    ViewData["Title"] = "Visualização de Países";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Visualização dos países cadastrados:</title>
+</head>
+<body>
+<div>
+    @if(!ModelState.IsValid) {<p> <strong>Não há nenhum país cadastrado!</strong></p>}
+    
+    @if (ModelState.IsValid)
+    {
+        <h3> País - @Model.CountryName</h3>
+        <p>Nome: @Model.CountryName</p>
+        <p>Código: @Model.CountryCode</p>
+    }
+</div>
+</body>
+</html>
