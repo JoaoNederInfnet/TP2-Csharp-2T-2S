@@ -1,0 +1,25 @@
+@page
+@model Ex_04.Pages.CityManager.CityIndex
+
+@{
+    ViewData["Title"] = "Visualização de Cidades";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Visualização das cidades cadastradas:</title>
+</head>
+<body>
+<div>
+    @if(!ModelState.IsValid) {<p> <strong>Não há nenhuma cidade cadastrada!</strong></p>}
+    
+    @if (ModelState.IsValid)
+    {
+        <h3> Cidade - @Model.CityName</h3>
+        <p>Nome: @Model.CityName</p>
+    }
+</div>
+</body>
+</html>
