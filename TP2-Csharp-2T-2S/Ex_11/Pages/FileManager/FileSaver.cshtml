@@ -1,0 +1,26 @@
+@page
+@model Ex_11.Pages.FileManager.FileSaver
+
+@{
+    ViewData["Title"] = "Salvar Nota";
+}
+
+<h2>Salvar Nota</h2>
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Input.Content" class="form-label">Escreva sua nota:</label>
+        <textarea asp-for="Input.Content" class="form-control" rows="5"></textarea>
+        <span asp-validation-for="Input.Content" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-2">Salvar</button>
+</form>
+
+@if (!string.IsNullOrEmpty(Model.SavedFileName))
+{
+    <div class="alert alert-success mt-3">
+        Nota salva com sucesso!  
+        <a href="/files/@Model.SavedFileName" download>Clique aqui para baixar</a>
+    </div>
+}

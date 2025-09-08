@@ -1,0 +1,33 @@
+@page
+@model Ex_11.Pages.FileManager.FileViewer
+
+@{
+    ViewData["Title"] = "Notas Salvas";
+}
+
+<h2>Notas Salvas</h2>
+
+@if (Model.Files.Count == 0)
+{
+    <div class="alert alert-warning">
+        Não há notas salvas ainda!
+    </div>
+}
+else
+{
+    <ul class="list-group">
+        @foreach (var file in Model.Files)
+        {
+            <li class="list-group-item">
+                <a asp-page="/FileManager/FileViewer" asp-route-fileName="@file">@file</a>
+            </li>
+        }
+    </ul>
+}
+
+@if (!string.IsNullOrEmpty(Model.SelectedContent))
+{
+    <hr />
+    <h3>Conteúdo da nota: <code>@Model.SelectedFile</code></h3>
+    <pre class="border p-3 bg-light">@Model.SelectedContent</pre>
+}
