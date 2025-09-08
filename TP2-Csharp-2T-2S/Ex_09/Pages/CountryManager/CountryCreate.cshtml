@@ -1,0 +1,39 @@
+@page
+@model Ex_09.Pages.CountryManager.CountryCreate
+
+@{
+    ViewData["Title"] = "Cadastro de Países";
+}
+<h1>@ViewData["Title"]</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            @for (int i = 0; i < Model.Inputs.Count; i++)
+            {
+                <h2>País @(i+1)</h2>
+                <div class="form-group">
+                    <label asp-for="Inputs[i].CountryName" class="form-label">Nome</label>
+                    <input asp-for="Inputs[i].CountryName" class="form-control"/>
+                    <span asp-validation-for="Inputs[i].CountryName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Inputs[i].CountryCode" class="form-label">Código</label>
+                    <input asp-for="Inputs[i].CountryCode" class="form-control"/>
+                    <span asp-validation-for="Inputs[i].CountryCode" class="text-danger"></span>
+                </div>
+                
+                <hr>
+            }
+            
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

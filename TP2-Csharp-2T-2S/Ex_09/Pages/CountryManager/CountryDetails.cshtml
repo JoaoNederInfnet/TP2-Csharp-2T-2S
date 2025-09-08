@@ -1,0 +1,19 @@
+@page "{countryNameUrl}"
+@model Ex_09.Pages.CountryManager.CountryDetails
+
+@{
+    ViewData["Title"] = "Detalhes do País";
+}
+
+@if (Model.Country == null)
+{
+    <h1><strong>Não há nenhum país cadastrado!</strong></h1>
+}
+ else
+ {
+   <h2>Você está vendo detalhes do país: @Model.Country.CountryName</h2>
+   <div class="form-group">
+       <p><strong>Nome</strong>: @Model.Country.CountryName</p>
+       <p><strong>Código</strong>: @Model.Country.CountryCode</p>
+   </div>
+ }
