@@ -18,12 +18,13 @@ public class CountryCreate : PageModel
     }
     //========================================================
     
-    /* ------------------------------- PREPARAÇÕES ------------------------------- */
+    /* ------------------------------- PROPRIEDADES ------------------------------- */
     //1) Definindo a propriedade que será ligada aos dados do formulário no HTML
     [BindProperty]  
-    public List<InputModel> Inputs { get; set; } = new(); //--------------------------------------------/------------------------------------------
+    public List<InputModel> Inputs { get; set; } = new(); //========================================================
     
-    //2) Para conseguir usar minhas classes FluentValidation
+    /* ------------------------------- PREPARAÇÕES ------------------------------- */
+    //1) Para conseguir usar minhas classes FluentValidation
     //A) Criando um campo que usarei para injetar o validador dentro da PageModel
     private readonly IValidator<InputModel> _validator; //readonly para definir esse campo apenas no construtor
     //----------------------------------//--------------------------------
@@ -34,9 +35,10 @@ public class CountryCreate : PageModel
     }
     //========================================================
     
-    /* ------------------------------- GET ------------------------------- */
+    /* ------------------------------- HANDLERS DE REQUISIÇÃO ------------------------------- */
+    //# GET -> Preparação para primeira exibição da página
     //Inicializando a lista Inputs com 5 itens vazios, para gerar o HTML correto com 5 objetos a serem preenchidos
-    public void OnGet() //Ao entrar na página
+    public void OnGet() 
     {
         for (int i = 0; i < 5; i++)
         {
@@ -45,8 +47,8 @@ public class CountryCreate : PageModel
     }
     //========================================================
     
-    /* ------------------------------- POST ------------------------------- */
-    public IActionResult OnPost()//Ao clicar em cadastrar
+    //# POST -> Processamento dos dados enviados pelo formulário
+    public IActionResult OnPost()
     {
         /* Fazendo a validação manual com FluentValidation */
         //1) Laço for para validar cada objeto input do formulário
@@ -93,5 +95,4 @@ public class CountryCreate : PageModel
         // Redirecionando para o index
         return RedirectToPage("CountryIndex");
     }
-    //========================================================
 }

@@ -7,8 +7,13 @@ namespace Ex_12.Pages.CountryManager;
 
 public class CountryIndex : PageModel
 {
-    public List<Country> Countries { get; set; }
+    /* ------------------------------- PROPRIEDADES ------------------------------- */
+    //1) Definindo a propriedade que irá armazenar os dados do país a ser exibido na página
+    public List<Country> Countries { get; set; } = new();
     
+    /* ------------------------------- HANDLERS DE REQUISIÇÃO ------------------------------- */
+    //# GET -> Preparação para primeira exibição da página
+    // Acessa a session usa os dados para extrair uma lista de países e armazenar na sua propriedade
     public void OnGet()
     {
         //Pegando a string json da sessão Http
@@ -21,14 +26,8 @@ public class CountryIndex : PageModel
         }
         else
         {
-            //Transformando a string JSON em uma lista de objetos
-            var countries = JsonSerializer.Deserialize<List<Country>>(countriesJsonString);
-
-            Countries = countries;
-            
-            //Usando o TempData para armazenar a string JSON para a próxima requisição (clicada no link para o country details)
-            TempData[countriesJson] = countriesJsonString;
-            
+            //Transformando a string JSON em uma lista de objetos e associando à sua propriedade
+            Countries = JsonSerializer.Deserialize<List<Country>>(countriesJsonString) ?? new List<Country>();
         }
     } 
 }
